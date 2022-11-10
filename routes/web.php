@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('/tasks', TasksController::class);
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('/tasks', TasksController::class);
+    Route::resource('/users', UsersController::class);  
+});
+    
