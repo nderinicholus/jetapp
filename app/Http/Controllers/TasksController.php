@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTaskRequest;
-use Illuminate\Console\View\Components\Task;
+use App\Http\Requests\UpdateTaskRequest;
 
 class TasksController extends Controller
 {
@@ -72,7 +73,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         $task->update($request->validated());
 
